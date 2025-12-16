@@ -1,4 +1,4 @@
-# K-Means Algorithm (Pure Python Implementation)
+# K-Means Algorithm
 
 This project provides a minimal, dependency-free implementation of the K-Means clustering algorithm in Python.  
 The implementation is contained in the `KMeansAlgorithm` class, which performs clustering using only core Python features and the standard library.
@@ -66,3 +66,4 @@ centroids, clusters = algo.KMeans(samples, centoridsNumber=2)
 
 print("Final centroids:", centroids)
 print("Clusters:", clusters)
+
