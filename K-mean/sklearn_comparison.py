@@ -1,7 +1,26 @@
 import random
+import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans as SklearnKMeans
 
 from kmeanproject.Kmeans import KMeansAlgorithm
+
+def plot_clusters(ax, clusters, centroids, title):
+    # Plot samples by cluster
+    for cluster in clusters:
+        if cluster:
+            xs = [p[0] for p in cluster]
+            ys = [p[1] for p in cluster]
+            ax.scatter(xs, ys)
+
+    # Plot centroids
+    cx = [c[0] for c in centroids]
+    cy = [c[1] for c in centroids]
+    ax.scatter(cx, cy, marker="x", s=100)
+
+    ax.set_title(title)
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.grid(True)
 
 def main():
     # Compare our implementation vs sklearn on an easy dataset
@@ -55,5 +74,25 @@ def main():
 
     print("=========================================\n")
 
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+
+    plot_clusters(
+        axes[0],
+        our_clusters,
+        our_centroids,
+        "Our K-Means Implementation"
+    )
+
+    plot_clusters(
+        axes[1],
+        sk_clusters,
+        sk_centroids,
+        "Scikit-learn KMeans"
+    )
+
+    plt.tight_layout()
+    plt.show()
+
 if __name__ == "__main__":
+
     main()
